@@ -57,9 +57,6 @@ a.set_xlim(15, 85); a.set_xticks(range(20, 90, 10)); lo, hi = a.get_ylim(); a.se
 a.set_xlabel('Target level (%)'); a.set_ylabel('Rating minus\ndisplayed target (points)'); stars(a, 'sub_disp')
 for x, l in zip([fig.axes[0], fig.axes[1], a1, fig.axes[4], a], 'ABCDE'): S.tag(x, l, -.3, 1.04 if l != 'C' else 1.12)
 S.top_legend(fig, fig.axes[1], y=.93)
-nt = fig.add_subplot(gs[1, 2]); nt.axis('off')
-nt.text(0, .95, 'Reading guide', fontweight='bold', fontsize=7.5, va='top')
-nt.text(0, .83, 'C shows each task\'s own raw execution\nmeasure (not comparable across tasks).\nGrip: held force / target (1 = exactly on\ntarget). Tapping: taps per second\n(calibrated max. ~ 7/s). D puts both on\none scale (% of calibrated capacity).\n\nAll panels: successful trials, except A\n(all trials) and E (all rated trials).\nBoxes: person means; * = grip vs\ntapping, LMM, Holm-corrected p < .05.', fontsize=6.4, va='top', linespacing=1.35)
 S.save(fig, '02_familiarisation', 'fig02_familiarisation')
 tab = fs.groupby(['modality', 'target'])[['time', 'realised', 'tap_rate', 'hold_mean_ratio']].mean().round(3)
 res['cell_means_successful'] = tab.reset_index().to_dict('records'); res['failed_trials'] = {f'{k[0]}_{k[1]}': int(v) for k, v in fails.items()}
