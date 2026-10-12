@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Make all figures and the supervisor PDF. PYTHON=... to choose the interpreter.
+# Make all figures and the figures PDF. PYTHON=... to choose the interpreter.
 set -euo pipefail
 cd "$(dirname "$0")"; PY="${PYTHON:-.venv/bin/python}"
 for f in figures/*/make_figure.py; do echo "== $f"; "$PY" "$f"; done

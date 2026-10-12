@@ -1,4 +1,4 @@
-"""Builds docs/supervisor_figures.pdf: each figure on its own page, followed by a German explanation page.
+"""Builds docs/figures.pdf: each figure on its own page, followed by a German explanation page.
 Numbers are read from figures/*/out/results.json (run the figure scripts first)."""
 import json, sys, pathlib
 from reportlab.lib.pagesizes import A4
@@ -38,7 +38,7 @@ def page(): story.append(PageBreak())
 r1, r2, r3, r4, r5, r6, r7, r8 = (R(f) for f in ['01_effort_ratings', '02_familiarisation', '03_choices', '04_choice_matrix', '05_choices_glmm', '06_exchange_rate', '07_fatigue_timing', '08_per_person_glmm'])
 # ------------------------------------------------------------------ title
 story += [Paragraph('Effort valuation in gripping and tapping – Kernabbildungen für die Betreuung', H1),
-  P('Stand: 12.10.2026 · N = 31 · Code: Repository <b>znelor/effort-thesis-supervisor</b> (Python; Mixed Models mit <b>lme4</b> über <b>pymer4</b>). '
+  P('Stand: 12.10.2026 · N = 31 · Code: Repository <b>znelor/effort-thesis</b> (Python; Mixed Models mit <b>lme4</b> über <b>pymer4</b>). '
     'Alle Zahlen in diesem Dokument werden von den Skripten erzeugt (figures/*/out/results.json) und nicht von Hand eingetragen.'),
   Paragraph('Hypothesen', H2),
   P('<b>H1</b>: Mehr Reward erhöht die Wahl der anstrengenderen Option. <b>H2</b>: Mehr Effort senkt sie. '
@@ -270,9 +270,9 @@ story += [Paragraph('Offene Punkte für das Gespräch', H1),
   P('5. <b>Fatigue</b> folgt v. a. der Session-Zeit (Block 2 höher), nicht dem Task (Fig. 7a); in der Familiarisation keine nennenswerte Ermüdung (Fig. 7b).'),
   Spacer(1, 10),
   P('<i>Weggelassen gegenüber v7 (nicht gelöscht, im Haupt-Repository)</i>: Choice summaries, Effort-Slope-Differenz, Robustness forest, SV-Modelle, relative Fatigue-Timing, Execution vs. Choice, Kapazität.')]
-out = ROOT / 'docs' / 'supervisor_figures.pdf'
+out = ROOT / 'docs' / 'figures.pdf'
 def num(c, d):
     c.saveState(); c.setFont('OS', 7.5); c.setFillColor(colors.grey); c.drawRightString(A4[0] - 1.6 * cm, 1 * cm, str(d.page)); c.restoreState()
 SimpleDocTemplate(str(out), pagesize=A4, leftMargin=1.8 * cm, rightMargin=1.8 * cm, topMargin=1.5 * cm, bottomMargin=1.6 * cm,
-                  title='Effort valuation – supervisor figures', author='Lorenz').build(story, onFirstPage=num, onLaterPages=num)
+                  title='Effort valuation – figures and models', author='Lorenz').build(story, onFirstPage=num, onLaterPages=num)
 print('wrote', out)

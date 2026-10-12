@@ -1,7 +1,7 @@
-# Effort valuation in gripping and tapping – supervisor figures
+# Effort valuation in gripping and tapping – figures and models
 
 Core figures of the master thesis (N = 31; effort-based choices, grip vs tapping), with the code that makes them.
-**No participant data are included.** The overview with explanations (German) is [`docs/supervisor_figures.pdf`](docs/supervisor_figures.pdf).
+**No participant data are included.** The overview with explanations (German) is [`docs/figures.pdf`](docs/figures.pdf).
 
 Hypotheses: larger rewards increase (H1) and larger efforts decrease (H2) choices of the higher-demand option;
 the effort-to-reward exchange rate k = −β_E/β_R is higher for gripping than for tapping (H3).
@@ -13,7 +13,7 @@ effortdata/     Python package: data paths (config.py), loaders (load.py), deriv
                 the one choice model (choice.py), pymer4/lme4 helpers (models.py), figure style (style.py)
 figures/NN_*/   one folder per figure: make_figure.py (+ out/results.json with model output, git-ignored)
 output/NN_*/    the figures (PNG 300 dpi + vector PDF), tracked
-docs/           supervisor_figures.pdf and build_pdf.py
+docs/           figures.pdf and build_pdf.py
 data/           put the data here (git-ignored except data/README.md)
 config.yml      data folder and data layout
 run_all.sh      makes all figures and the PDF
@@ -47,7 +47,7 @@ slopes, no covariates, independent per-person random intercept, grip offset and 
 ## Running
 
 ```
-./run_all.sh                     # all figures + docs/supervisor_figures.pdf (≈ 5 min)
+./run_all.sh                     # all figures + docs/figures.pdf (≈ 5 min)
 .venv/bin/python figures/06_exchange_rate/make_figure.py   # a single figure, from any folder
 ```
 
