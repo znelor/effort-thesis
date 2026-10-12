@@ -1,0 +1,7 @@
+data/*
+!data/README.md
+cache/
+**/out/
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,11 @@
+pymer4==0.9.2
+rpy2>=3.5
+polars
+pandas
+numpy
+scipy
+matplotlib
+formulae
+great_tables
+reportlab
+pillow

@@ -1,0 +1,6 @@
+# Data folder (relative paths are resolved against the repository root). Override: env EFFORT_DATA_DIR.
+data_dir: data
+tables_subdir: thesis_data_main/31-participants-2026-09-06/tables
+export_subdir: thesis_data_main/vps-export-2026-09-28
+uploads_glob: thesis_data_uploads*/upload-*.json.gz
+cache_dir: cache
