@@ -1,5 +1,4 @@
-data/*
-!data/README.md
+data/
 cache/
 **/out/
 __pycache__/

@@ -1,3 +1,4 @@
+# pymer4 runs lme4 through rpy2: needs R >= 4.3 with lme4 + lmerTest + emmeans (see README)
 pymer4==0.9.2
 rpy2>=3.5
 polars
@@ -7,5 +8,6 @@ scipy
 matplotlib
 formulae
 great_tables
-reportlab
-pillow
+joblib
+scikit-learn
+pyarrow
