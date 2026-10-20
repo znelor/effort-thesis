@@ -97,3 +97,19 @@ Rscript analyses/covariate_tests.R
 ```
 
 **Output:** `analyses/out/covariate_models.rds`, `analyses/out/covariate_lrt.csv`, `analyses/out/covariate_terms_*.csv`
+
+**`analyses/extension_models.R`** — Extensions beyond RV2 linear difference model
+
+Tests whether only the effort *difference* matters (RV2 assumption: choosing 80 vs 60 costs the same as 30 vs 10) and whether effort cost is linear. Compares three extension models:
+
+- **Model A**: Hard and easy effort levels as separate predictors (Eh, El). Tests whether high-lying effort pairs are extra deterrent beyond the gap.
+- **Model B**: Curved cost function (cost = β × level^p). Finds optimal exponent p by profiling the likelihood; p > 1 means each further effort step costs more.
+- **Model C**: One free cost per absolute effort level (20, 30, ..., 80). No shape assumed; the cost curve is read off directly.
+
+All models compute exchange-rate ratio (k_grip / k_tap) with delta-method CIs. Requires `EFFORT_DATA_DIR` and `EFFORT_LIB_DIR`.
+
+```bash
+Rscript analyses/extension_models.R
+```
+
+**Output:** `analyses/out/extensions/*.csv`, `analyses/out/extensions/fig/*.png`
