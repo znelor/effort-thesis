@@ -1,6 +1,7 @@
 data/
 cache/
 **/out/
+analyses/out/
 __pycache__/
 *.pyc
 .venv/

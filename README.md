@@ -50,3 +50,50 @@ Data somewhere else: `export EFFORT_DATA_DIR=/path/to/data`.
 
 Model numbers of each analysis: `figures/NN_*/out/results.json` (not tracked).
 Shared code (paths, loading, the choice model): `effortdata/`.
+
+## R analyses (mixed-effects models)
+
+The `analyses/` directory contains R scripts for random-effects model comparison and covariate tests using `lme4`. These scripts depend on the **effortlib** R package (not included in this public repo).
+
+### Setup
+
+**effortlib dependency:** Set `EFFORT_LIB_DIR` to point to the effortlib package directory:
+
+```bash
+export EFFORT_LIB_DIR=/path/to/effort-thesis-analysis/effortlib
+```
+
+**Data:** Set `EFFORT_DATA_DIR` as described in the [Data](#data) section above, or place data files in `data/` as shown in the table.
+
+### Scripts
+
+**`analyses/random_effects_tests.R`** — Random-effects structure comparison
+
+Compares three nested random-effects specifications of the binomial choice GLMM:
+- **RV1**: Baseline correlated random intercept + reward/effort slopes  
+- **RV2**: RV1 + uncorrelated random grip intercept (primary model)  
+- **RV6**: Maximal task-specific random slopes (all fixed effects)
+
+Tests likelihood-ratio tests (RV1 vs RV2, RV2 vs RV6), AIC/BIC comparison, singularity checks, and computes the exchange-rate ratio (k_grip / k_tap) with delta-method confidence intervals.
+
+```bash
+Rscript analyses/random_effects_tests.R
+```
+
+**Output:** `analyses/out/random_effects_models.rds`, `analyses/out/random_effects_comparison.csv`
+
+**`analyses/covariate_tests.R`** — Person-level covariate 'knobs' tests
+
+Tests whether person-level characteristics modulate choice behavior on top of the primary RV2 model:
+- Hand span, log grip MVC, hand-use level  
+- Tapping calibration, tapping experience level  
+- Baseline fatigue, task order (grip-first vs tap-first)  
+- Within-person fatigue (trial-level deviations + person means)
+
+For each covariate: adds task-specific intercept shifts and interactions with relevant effort slopes to RV2, then performs likelihood-ratio tests with Holm correction.
+
+```bash
+Rscript analyses/covariate_tests.R
+```
+
+**Output:** `analyses/out/covariate_models.rds`, `analyses/out/covariate_lrt.csv`, `analyses/out/covariate_terms_*.csv`
